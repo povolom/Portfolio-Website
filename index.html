@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcantonio Povolo — Coming Soon</title>
+<meta name="description" content="Portfolio of Marcantonio Povolo, Computer Engineering student building hardware + software projects. In development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1E33;
+    --panel: #132C47;
+    --grid: #1C3550;
+    --trace: #4A9EDB;
+    --copper: #C97A3D;
+    --copper-bright: #E0975A;
+    --text: #EDEFF2;
+    --text-dim: #8FA3B8;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-font-smoothing: antialiased; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 6vw;
+  }
+
+  /* Blueprint grid background */
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .grid-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, transparent 0%, var(--navy) 75%);
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--trace);
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 6vw, 3.6rem);
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    margin-bottom: 0.9rem;
+  }
+
+  h1 .last {
+    color: var(--copper-bright);
+  }
+
+  .role {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    color: var(--text-dim);
+    font-weight: 400;
+    margin-bottom: 2.6rem;
+    max-width: 46ch;
+    line-height: 1.5;
+  }
+
+  /* Signature element: schematic trace + status LED */
+  .status-panel {
+    border: 1px solid var(--grid);
+    background: linear-gradient(180deg, rgba(19,44,71,0.6), rgba(19,44,71,0.25));
+    border-radius: 3px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 2.8rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--copper);
+    box-shadow: 0 0 0 3px rgba(201,122,61,0.15);
+    flex-shrink: 0;
+    animation: pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(201,122,61,0.15), 0 0 8px rgba(201,122,61,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(201,122,61,0.06), 0 0 14px rgba(201,122,61,0.7); }
+  }
+
+  .status-text {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+  }
+
+  .status-text .label {
+    color: var(--text-dim);
+  }
+
+  .status-text .value {
+    color: var(--copper-bright);
+    font-weight: 500;
+  }
+
+  /* Trace line drawn across the top of the panel */
+  .trace-line {
+    position: absolute;
+    top: -1px;
+    left: 24px;
+    width: 90px;
+    height: 1px;
+    background: var(--trace);
+    transform-origin: left;
+    animation: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
+  }
+
+  @keyframes draw {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+  }
+
+  .trace-line::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    background: var(--trace);
+    border-radius: 50%;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+
+  .links a {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--grid);
+    border-radius: 3px;
+    padding: 0.7rem 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+
+  .links a:hover,
+  .links a:focus-visible {
+    border-color: var(--copper);
+    color: var(--copper-bright);
+    background: rgba(201,122,61,0.06);
+  }
+
+  .links a:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
+  }
+
+  .links a::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--trace);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 6vh;
+    left: 6vw;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    opacity: 0.6;
+    z-index: 1;
+  }
+
+  @media (max-width: 560px) {
+    footer { position: static; margin-top: 3rem; opacity: 0.5; }
+    body { align-items: flex-start; padding-top: 10vh; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .led { animation: none; }
+    .trace-line { animation: none; transform: scaleX(1); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+
+  <main class="wrap">
+    <p class="eyebrow">Computer Engineering &middot; Toronto Metropolitan University</p>
+
+    <h1>Marcantonio<br>Po<span class="last">volo</span></h1>
+
+    <p class="role">Building at the intersection of hardware and software — currently assembling a portfolio of projects worth showing. This page will be replaced by the real thing soon.</p>
+
+    <div class="status-panel">
+      <span class="trace-line" aria-hidden="true"></span>
+      <span class="led" aria-hidden="true"></span>
+      <p class="status-text"><span class="label">STATUS:</span> <span class="value">BUILDING</span></p>
+    </div>
+
+    <nav class="links" aria-label="Contact and profiles">
+      <a href="mailto:contact@marcantoniopovolo.com">Email</a>
+      <a href="https://www.linkedin.com/in/marcantoniopovolo/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/povolom" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </main>
+
+  <footer>&copy; 2026 MARCANTONIO POVOLO</footer>
+
+</body>
+</html>
