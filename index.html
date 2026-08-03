@@ -1,275 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marcantonio Povolo — Coming Soon</title>
-<meta name="description" content="Portfolio of Marcantonio Povolo, Computer Engineering student building hardware + software projects. In development.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0B1E33;
-    --panel: #132C47;
-    --grid: #1C3550;
-    --trace: #4A9EDB;
-    --copper: #C97A3D;
-    --copper-bright: #E0975A;
-    --text: #EDEFF2;
-    --text-dim: #8FA3B8;
-    --mono: 'IBM Plex Mono', ui-monospace, monospace;
-    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#050d1d">
+  <meta name="author" content="Marcantonio Povolo">
+  <meta name="robots" content="index, follow">
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  <title>Marcantonio Povolo | Portfolio Coming Soon</title>
+  <meta name="description" content="The personal portfolio of Marcantonio Povolo, a Computer Engineering student focused on product, hardware, software, and embedded systems.">
+  <link rel="canonical" href="https://marcantoniopovolo.com/">
 
-  html { -webkit-font-smoothing: antialiased; }
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://marcantoniopovolo.com/">
+  <meta property="og:title" content="Marcantonio Povolo | Portfolio Coming Soon">
+  <meta property="og:description" content="Computer Engineering, product, hardware, software, and embedded systems. A new personal portfolio is currently in development.">
 
-  body {
-    background: var(--navy);
-    color: var(--text);
-    font-family: var(--sans);
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6vh 6vw;
-  }
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Marcantonio Povolo | Portfolio Coming Soon">
+  <meta name="twitter:description" content="Computer Engineering, product, hardware, software, and embedded systems. A new personal portfolio is currently in development.">
 
-  /* Blueprint grid background */
-  .grid-bg {
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 0;
-  }
+  <link rel="icon" type="image/png" href="assets/mp-initials-white.png">
+  <link rel="apple-touch-icon" href="assets/mp-initials-white.png">
+  <link rel="preload" as="image" href="assets/mp-wordmark-white.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  .grid-bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 60% at 50% 40%, transparent 0%, var(--navy) 75%);
-  }
+  <style>
+    :root {
+      --background: #050d1d;
+      --background-light: #0a1b35;
+      --surface: rgba(12, 31, 58, 0.62);
+      --surface-strong: rgba(16, 41, 75, 0.78);
+      --text: #f5f8fc;
+      --muted: #9eb1c7;
+      --quiet: #6f849d;
+      --blue: #3fa9f5;
+      --blue-bright: #83d3ff;
+      --line: rgba(179, 215, 244, 0.14);
+      --line-strong: rgba(179, 215, 244, 0.26);
+      --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+    }
 
-  .wrap {
-    position: relative;
-    z-index: 1;
-    max-width: 720px;
-    width: 100%;
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  .eyebrow {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
+    html {
+      min-width: 320px;
+      background: var(--background);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-  .eyebrow::before {
-    content: "";
-    width: 22px;
-    height: 1px;
-    background: var(--trace);
-    display: inline-block;
-  }
+    body {
+      min-height: 100svh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 15%, rgba(31, 126, 204, 0.22), transparent 35rem),
+        radial-gradient(circle at 82% 78%, rgba(41, 92, 168, 0.18), transparent 34rem),
+        linear-gradient(145deg, #040a16 0%, var(--background) 48%, #07162c 100%);
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
 
-  h1 {
-    font-family: var(--mono);
-    font-weight: 600;
-    font-size: clamp(2.1rem, 6vw, 3.6rem);
-    letter-spacing: -0.01em;
-    line-height: 1.08;
-    margin-bottom: 0.9rem;
-  }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+      pointer-events: none;
+    }
 
-  h1 .last {
-    color: var(--copper-bright);
-  }
+    body::after {
+      content: "";
+      position: fixed;
+      width: min(54rem, 90vw);
+      aspect-ratio: 1;
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      border: 1px solid rgba(102, 190, 255, 0.08);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow:
+        0 0 0 9rem rgba(83, 179, 247, 0.012),
+        0 0 0 18rem rgba(83, 179, 247, 0.008);
+      pointer-events: none;
+    }
 
-  .role {
-    font-family: var(--sans);
-    font-size: clamp(1rem, 2.4vw, 1.25rem);
-    color: var(--text-dim);
-    font-weight: 400;
-    margin-bottom: 2.6rem;
-    max-width: 46ch;
-    line-height: 1.5;
-  }
+    a {
+      color: inherit;
+    }
 
-  /* Signature element: schematic trace + status LED */
-  .status-panel {
-    border: 1px solid var(--grid);
-    background: linear-gradient(180deg, rgba(19,44,71,0.6), rgba(19,44,71,0.25));
-    border-radius: 3px;
-    padding: 1.4rem 1.6rem;
-    margin-bottom: 2.8rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+    .site-shell {
+      width: min(1180px, calc(100% - 3rem));
+      min-height: 100svh;
+      margin: 0 auto;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      position: relative;
+    }
 
-  .led {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--copper);
-    box-shadow: 0 0 0 3px rgba(201,122,61,0.15);
-    flex-shrink: 0;
-    animation: pulse 2.2s ease-in-out infinite;
-  }
+    .site-header,
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
 
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(201,122,61,0.15), 0 0 8px rgba(201,122,61,0.4); }
-    50% { box-shadow: 0 0 0 6px rgba(201,122,61,0.06), 0 0 14px rgba(201,122,61,0.7); }
-  }
+    .site-header {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--line);
+    }
 
-  .status-text {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-  }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      color: var(--text);
+      text-decoration: none;
+    }
 
-  .status-text .label {
-    color: var(--text-dim);
-  }
+    .brand img {
+      width: 4.75rem;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 1rem rgba(92, 190, 255, 0.16));
+    }
 
-  .status-text .value {
-    color: var(--copper-bright);
-    font-weight: 500;
-  }
+    .brand-copy {
+      display: grid;
+      gap: 0.1rem;
+    }
 
-  /* Trace line drawn across the top of the panel */
-  .trace-line {
-    position: absolute;
-    top: -1px;
-    left: 24px;
-    width: 90px;
-    height: 1px;
-    background: var(--trace);
-    transform-origin: left;
-    animation: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both;
-  }
+    .brand-name {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
-  @keyframes draw {
-    from { transform: scaleX(0); opacity: 0; }
-    to { transform: scaleX(1); opacity: 1; }
-  }
+    .brand-note {
+      color: var(--quiet);
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-  .trace-line::after {
-    content: "";
-    position: absolute;
-    right: -3px;
-    top: -2px;
-    width: 5px;
-    height: 5px;
-    background: var(--trace);
-    border-radius: 50%;
-  }
+    .header-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.69rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-  }
+    .status-dot {
+      width: 0.48rem;
+      height: 0.48rem;
+      border-radius: 50%;
+      background: var(--blue-bright);
+      box-shadow: 0 0 0 0.32rem rgba(73, 177, 246, 0.1), 0 0 1.1rem rgba(73, 177, 246, 0.8);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
 
-  .links a {
-    font-family: var(--mono);
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-    color: var(--text);
-    text-decoration: none;
-    border: 1px solid var(--grid);
-    border-radius: 3px;
-    padding: 0.7rem 1.1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-  }
+    .hero {
+      width: 100%;
+      padding: clamp(4rem, 10vh, 7rem) 0 clamp(3.5rem, 8vh, 6rem);
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
 
-  .links a:hover,
-  .links a:focus-visible {
-    border-color: var(--copper);
-    color: var(--copper-bright);
-    background: rgba(201,122,61,0.06);
-  }
+    .hero-inner {
+      width: min(850px, 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  .links a:focus-visible {
-    outline: 2px solid var(--copper);
-    outline-offset: 2px;
-  }
+    .eyebrow {
+      margin-bottom: 1.65rem;
+      color: var(--blue-bright);
+      font-family: var(--mono);
+      font-size: clamp(0.65rem, 1.5vw, 0.76rem);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      line-height: 1.7;
+      text-transform: uppercase;
+    }
 
-  .links a::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: var(--trace);
-    display: inline-block;
-    flex-shrink: 0;
-  }
+    .wordmark {
+      width: min(47rem, 92vw);
+      max-height: 9.5rem;
+      margin-bottom: 1.55rem;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 0.85rem 2rem rgba(32, 132, 215, 0.18));
+    }
 
-  footer {
-    position: fixed;
-    bottom: 6vh;
-    left: 6vw;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    color: var(--text-dim);
-    opacity: 0.6;
-    z-index: 1;
-  }
+    h1 {
+      max-width: 15ch;
+      margin-bottom: 1.1rem;
+      font-size: clamp(2rem, 5.2vw, 4.15rem);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+      text-wrap: balance;
+    }
 
-  @media (max-width: 560px) {
-    footer { position: static; margin-top: 3rem; opacity: 0.5; }
-    body { align-items: flex-start; padding-top: 10vh; }
-  }
+    .intro {
+      max-width: 41rem;
+      color: var(--muted);
+      font-size: clamp(0.98rem, 2vw, 1.12rem);
+      line-height: 1.75;
+      text-wrap: pretty;
+    }
 
-  @media (prefers-reduced-motion: reduce) {
-    .led { animation: none; }
-    .trace-line { animation: none; transform: scaleX(1); opacity: 1; }
-  }
-</style>
+    .build-status {
+      margin: 2rem 0 2.25rem;
+      padding: 0.68rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(20, 54, 94, 0.72), rgba(9, 28, 53, 0.68));
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.04), 0 1rem 3rem rgba(0, 0, 0, 0.16);
+      color: #d7eaff;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .build-status::before {
+      content: "";
+      width: 0.48rem;
+      height: 0.48rem;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0.9rem rgba(63, 169, 245, 0.9);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .links a {
+      min-width: 7.25rem;
+      padding: 0.82rem 1.15rem;
+      border: 1px solid var(--line);
+      border-radius: 0.7rem;
+      background: var(--surface);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.045em;
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, color 180ms ease, background 180ms ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .links a:hover {
+      color: var(--text);
+      border-color: rgba(111, 200, 255, 0.48);
+      background: var(--surface-strong);
+      transform: translateY(-2px);
+    }
+
+    .links a:focus-visible {
+      color: var(--text);
+      outline: 2px solid var(--blue-bright);
+      outline-offset: 3px;
+    }
+
+    .site-footer {
+      padding: 1.4rem 0 1.65rem;
+      border-top: 1px solid var(--line);
+      color: var(--quiet);
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .footer-focus {
+      color: var(--muted);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.7;
+        transform: scale(0.92);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-shell {
+        width: min(100% - 2rem, 1180px);
+      }
+
+      .site-header {
+        padding: 1.1rem 0;
+      }
+
+      .brand img {
+        width: 4rem;
+      }
+
+      .brand-copy {
+        display: none;
+      }
+
+      .header-status {
+        font-size: 0.6rem;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .wordmark {
+        width: min(36rem, 96vw);
+        margin-bottom: 1.2rem;
+      }
+
+      .links {
+        width: 100%;
+      }
+
+      .links a {
+        flex: 1 1 8rem;
+      }
+
+      .site-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Marcantonio Povolo",
+      "url": "https://marcantoniopovolo.com/",
+      "sameAs": [
+        "https://www.linkedin.com/in/marcantoniopovolo/",
+        "https://github.com/povolom"
+      ],
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Toronto Metropolitan University"
+      },
+      "knowsAbout": [
+        "Computer Engineering",
+        "Technical Product Development",
+        "Hardware",
+        "Software",
+        "Embedded Systems"
+      ]
+    }
+  </script>
 </head>
+
 <body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Marcantonio Povolo home">
+        <img src="assets/mp-initials-white.png" alt="" width="208" height="112">
+        <span class="brand-copy">
+          <span class="brand-name">Marcantonio Povolo</span>
+          <span class="brand-note">Personal portfolio</span>
+        </span>
+      </a>
 
-  <div class="grid-bg"></div>
+      <p class="header-status"><span class="status-dot" aria-hidden="true"></span>Site in progress</p>
+    </header>
 
-  <main class="wrap">
-    <p class="eyebrow">Computer Engineering &middot; Toronto Metropolitan University</p>
+    <main class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Computer Engineering &bull; Product &bull; Hardware + Software</p>
 
-    <h1>Marcantonio<br>Po<span class="last">volo</span></h1>
+        <img class="wordmark" src="assets/mp-wordmark-white.png" alt="Marcantonio Povolo" width="552" height="112">
 
-    <p class="role">Building at the intersection of hardware and software — currently assembling a portfolio of projects worth showing. This page will be replaced by the real thing soon.</p>
+        <h1>A portfolio is taking shape.</h1>
 
-    <div class="status-panel">
-      <span class="trace-line" aria-hidden="true"></span>
-      <span class="led" aria-hidden="true"></span>
-      <p class="status-text"><span class="label">STATUS:</span> <span class="value">BUILDING</span></p>
-    </div>
+        <p class="intro">I am building a home for my software, hardware, product, and creative work. The complete portfolio will arrive as I develop the skills and projects worth sharing.</p>
 
-    <nav class="links" aria-label="Contact and profiles">
-      <a href="mailto:contact@marcantoniopovolo.com">Email</a>
-      <a href="https://www.linkedin.com/in/marcantoniopovolo/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/povolom" target="_blank" rel="noopener">GitHub</a>
-    </nav>
-  </main>
+        <p class="build-status">Currently building</p>
 
-  <footer>&copy; 2026 MARCANTONIO POVOLO</footer>
+        <nav class="links" aria-label="Contact and professional profiles">
+          <a href="mailto:contact@marcantoniopovolo.com">Email</a>
+          <a href="https://www.linkedin.com/in/marcantoniopovolo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/povolom" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </nav>
+      </div>
+    </main>
 
+    <footer class="site-footer">
+      <p>&copy; 2026 Marcantonio Povolo</p>
+      <p class="footer-focus">Toronto, Canada &bull; Building thoughtfully</p>
+    </footer>
+  </div>
 </body>
 </html>
