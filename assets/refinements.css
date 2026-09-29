@@ -82,3 +82,9 @@ button.button:disabled{opacity:.55;cursor:not-allowed;transform:none;border-colo
 a.social:hover .icon,.contact-card:hover .social .icon{transform:translateY(-1px) scale(1.12);color:var(--blue)}
 .contact-card .social .icon{width:18px;height:18px}
 @media (prefers-reduced-motion:reduce){.social .icon{transition:none}a.social:hover .icon,.contact-card:hover .social .icon{transform:none}}
+/* Photography gallery teaser (illustration only, no real photos yet) */
+.photo-teaser{align-content:center;justify-items:center;gap:6px;padding:24px}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:min(320px,100%)}
+.photo-grid span{aspect-ratio:4/3;border:1px solid #263347;border-radius:6px;background:linear-gradient(135deg,#1a2c44,#0c1624)}
+.photo-grid span:nth-child(2n){background:linear-gradient(135deg,#132238,#1d2b45)}
+.photo-teaser p{margin:12px 0 0;letter-spacing:.14em;font-size:12px;color:var(--muted)}
