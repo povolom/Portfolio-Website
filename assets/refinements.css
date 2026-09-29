@@ -88,3 +88,5 @@ a.social:hover .icon,.contact-card:hover .social .icon{transform:translateY(-1px
 .photo-grid span{aspect-ratio:4/3;border:1px solid #263347;border-radius:6px;background:linear-gradient(135deg,#1a2c44,#0c1624)}
 .photo-grid span:nth-child(2n){background:linear-gradient(135deg,#132238,#1d2b45)}
 .photo-teaser p{margin:12px 0 0;letter-spacing:.14em;font-size:12px;color:var(--muted)}
+/* Drawn arrow icons (replace the ↗ ↓ ▶ characters, which render as emoji on some phones) */
+.arrow{display:inline-block;width:.9em;height:.9em;vertical-align:-.1em;flex-shrink:0}
