@@ -34,3 +34,4 @@ button.button{font-family:inherit;cursor:pointer}
 body:has(.demo-window[open]){overflow:hidden}
 @media (max-width:640px){.demo-window{width:100vw;height:100dvh;border:0;border-radius:0}.demo-dots,.demo-open{display:none}}
 .hero-aside{margin:14px 0 26px;color:var(--muted);font-size:15px;font-style:italic}
+button.button:disabled{opacity:.55;cursor:not-allowed;transform:none;border-color:var(--line)}
