@@ -68,3 +68,17 @@ button.button:disabled{opacity:.55;cursor:not-allowed;transform:none;border-colo
 }
 @keyframes nav-unfold{from{opacity:0;transform:perspective(500px) rotateX(-80deg) translateY(-6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.brand,.menu-icon span,.js .navlinks,.js .navlinks.open{transition:none}.brand:hover,.brand:focus-visible{transform:none}.js .navlinks.open a{animation:none}}
+/* Logo size. The lettering sits in a 524x83 box inside the 635x533 image,
+   so --s scales everything together. --s:.53 makes the letters about 42px tall,
+   the same height as the menu button. */
+.brand{--s:.53;width:calc(524px*var(--s));height:calc(83px*var(--s))}
+.brand img{width:calc(635px*var(--s));height:calc(533px*var(--s));left:calc(-69px*var(--s));top:calc(-224px*var(--s))}
+@media(max-width:380px){.brand{--s:.45}}
+@media(max-width:340px){.brand{--s:.39}}
+@media(min-width:701px) and (max-width:780px){.brand{--s:.45}}
+/* LinkedIn and GitHub marks next to their links */
+.social{display:inline-flex;align-items:center;gap:8px}
+.social .icon{width:16px;height:16px;flex-shrink:0;transition:transform .25s ease,color .25s ease}
+a.social:hover .icon,.contact-card:hover .social .icon{transform:translateY(-1px) scale(1.12);color:var(--blue)}
+.contact-card .social .icon{width:18px;height:18px}
+@media (prefers-reduced-motion:reduce){.social .icon{transition:none}a.social:hover .icon,.contact-card:hover .social .icon{transform:none}}
