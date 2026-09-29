@@ -33,3 +33,4 @@ button.button{font-family:inherit;cursor:pointer}
 .demo-window iframe{flex:1;width:100%;border:0;background:#060b14}
 body:has(.demo-window[open]){overflow:hidden}
 @media (max-width:640px){.demo-window{width:100vw;height:100dvh;border:0;border-radius:0}.demo-dots,.demo-open{display:none}}
+.hero-aside{margin:14px 0 26px;color:var(--muted);font-size:15px;font-style:italic}
