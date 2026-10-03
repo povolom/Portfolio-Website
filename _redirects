@@ -1,0 +1,15 @@
+# Old Write-ups pages now live inside Projects ("What I learned").
+/writeups.html /projects.html 301
+/writeups /projects 301
+/writeup-cloudform.html /projects.html#cloudform 301
+/writeup-cloudform /projects.html#cloudform 301
+/writeup-investing-tracker.html /projects.html#markets 301
+/writeup-investing-tracker /projects.html#markets 301
+/writeup-website.html /projects.html#website 301
+/writeup-website /projects.html#website 301
+/writeup-coursework.html /projects.html#coursework 301
+/writeup-coursework /projects.html#coursework 301
+/writeup-go-train.html /projects.html#trains 301
+/writeup-go-train /projects.html#trains 301
+/writeup-photography.html /projects.html#photos 301
+/writeup-photography /projects.html#photos 301
