@@ -87,7 +87,7 @@ a.social:hover .icon,.contact-card:hover .social .icon{transform:translateY(-1px
 /* Apps page */
 .apps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px}
 .app-card{display:flex;flex-direction:column;gap:14px;border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px}
-.app-icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font:700 26px 'Space Grotesk',sans-serif;color:#fff;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 60%,#000))}
+.app-icon{width:56px;height:56px;border-radius:15px;box-shadow:0 10px 24px #0006}
 .app-status{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#f5c565}
 .app-copy h2{margin:6px 0 6px;font-size:24px}
 .app-copy h2 span{font-size:14px;color:var(--muted);font-weight:500}
