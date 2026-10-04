@@ -92,4 +92,5 @@ a.social:hover .icon,.contact-card:hover .social .icon{transform:translateY(-1px
 .app-copy h2{margin:6px 0 6px;font-size:24px}
 .app-copy h2 span{font-size:14px;color:var(--muted);font-weight:500}
 .app-copy p{margin:0;color:var(--muted);font-size:15px}
-.app-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:auto}
+.app-copy .app-domain{margin-top:10px;font:500 13px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--text);opacity:.8;overflow-wrap:anywhere}
+.app-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:auto}
