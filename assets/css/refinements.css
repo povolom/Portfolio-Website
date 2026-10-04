@@ -21,18 +21,6 @@
 .board-row span:first-child{color:var(--blue);font-weight:600}.board-row .ontime{color:#7be0a4}.board-row.dim{opacity:.55}
 .go-teaser p{margin:8px 0 0;text-align:center;letter-spacing:.14em;font-size:12px;color:var(--muted)}
 button.button{font-family:inherit;cursor:pointer}
-.demo-window{width:min(1200px,94vw);height:min(820px,88vh);max-width:none;max-height:none;padding:0;border:1px solid #39516c;border-radius:14px;background:var(--bg);color:var(--text);overflow:hidden;box-shadow:0 30px 80px #000a}
-.demo-window[open]{display:flex;flex-direction:column}
-.demo-window::backdrop{background:#02060cd0;backdrop-filter:blur(4px)}
-.demo-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#101e2e;border-bottom:1px solid var(--line)}
-.demo-dots{display:flex;gap:6px}.demo-dots i{width:9px;height:9px;border-radius:50%;background:#39516c}
-.demo-bar strong{flex:1;min-width:0;font-family:'Space Grotesk',sans-serif;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.demo-open{font-size:14px;color:var(--blue);text-decoration:none;white-space:nowrap}
-.demo-close{font:inherit;font-size:14px;background:transparent;color:var(--text);border:1px solid #39516c;border-radius:7px;padding:6px 12px;cursor:pointer}
-.demo-close:hover{border-color:var(--blue)}
-.demo-window iframe{flex:1;width:100%;border:0;background:#060b14}
-body:has(.demo-window[open]){overflow:hidden}
-@media (max-width:640px){.demo-window{width:100vw;height:100dvh;border:0;border-radius:0}.demo-dots,.demo-open{display:none}}
 .hero-aside{margin:14px 0 26px;color:var(--muted);font-size:15px;font-style:italic}
 button.button:disabled{opacity:.55;cursor:not-allowed;transform:none;border-color:var(--line)}
 /* Logo hover: small lift and tilt with a soft blue glow */

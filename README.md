@@ -2,7 +2,7 @@
 
 Source for my personal portfolio: **https://marcantoniopovolo.com**
 
-I'm Marcantonio Povolo, a Computer Engineering student at Toronto Metropolitan University. The site covers my projects, write-ups on what each project taught me, my background and my résumé.
+I'm Marcantonio Povolo, a Computer Engineering student at Toronto Metropolitan University. The site covers my projects and what each one taught me, the apps I'm building, my background and my résumé.
 
 ## How it's built
 
@@ -15,18 +15,25 @@ I'm Marcantonio Povolo, a Computer Engineering student at Toronto Metropolitan U
 
 | Path | What it is |
 |---|---|
-| `index.html`, `projects.html`, `writeups.html`, `about.html`, `resume.html`, `contact.html` | The main pages |
-| `writeup-*.html` | One page per project on what it taught me (coming soon) |
+| `index.html`, `projects.html`, `apps.html`, `about.html`, `resume.html`, `contact.html` | The six pages |
 | `404.html` | Shown for pages that don't exist |
+| `_redirects` | Sends old addresses (like the retired write-up pages) to their new home |
 | `assets/css/` | `site.css` (base styles) and `refinements.css` (additions, loaded second) |
-| `assets/js/site.js` | Mobile menu and the project demo window |
+| `assets/js/site.js` | Mobile menu |
 | `assets/img/` | Logo, portrait, project images and the link-preview image |
-| `assets/icons/`, `favicon.ico` | Browser and home-screen icons |
+| `assets/icons/`, `favicon.ico` | Browser and home-screen icons; `assets/icons/apps/` holds each app's icon |
 | `assets/Marcantonio-Povolo-Resume.pdf` | Public résumé |
 | `wrangler.jsonc`, `.assetsignore` | Cloudflare settings: custom 404 page, and files that shouldn't be served |
 
-## Related projects
+## My projects
 
-- [Investing Tracker](https://github.com/povolom/Investing-Portfolio-Project): TSX and US holdings in CAD with live quotes
-- [GO Train commute planner](https://github.com/povolom/GO-Train-Planner) (coming soon)
-- [Photography gallery](https://github.com/povolom/Photography-Gallery) (coming soon)
+Each app has its own repo and its own subdomain, hosted on Cloudflare:
+
+| Project | Address | Code |
+|---|---|---|
+| Markets by MP | https://markets.marcantoniopovolo.com (coming soon) | [Markets-by-MP](https://github.com/povolom/Markets-by-MP) |
+| Trains by MP | https://trains.marcantoniopovolo.com (coming soon) | [Trains-by-MP](https://github.com/povolom/Trains-by-MP) |
+| Photos by MP | https://photos.marcantoniopovolo.com (coming soon) | [Photos-by-MP](https://github.com/povolom/Photos-by-MP) |
+| Lineups by MP | https://lineups.marcantoniopovolo.com (coming soon) | [Lineups-by-MP](https://github.com/povolom/Lineups-by-MP) |
+| Closet by MP | https://closet.marcantoniopovolo.com (coming soon) | [Closet-by-MP](https://github.com/povolom/Closet-by-MP) |
+| Cloudform | https://cloudform.marcantoniopovolo.com | [Cloudform-Website](https://github.com/povolom/Cloudform-Website) |
