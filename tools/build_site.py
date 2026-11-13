@@ -21,12 +21,15 @@ FOOTER = f'''<footer class="footer"><div class="wrap foot-top">
 
 def page(file, title, desc, body):
     full = f'Marcantonio Povolo | {title}' if file == 'index.html' else f'{title} | Marcantonio Povolo'
-    path = '' if file == 'index.html' else file
+    path = '' if file == 'index.html' else file.removesuffix('.html')
     links = ''.join(f'<a href="{f}"' + (' aria-current="page"' if f == file else '') + f'>{t}</a>' for f, t in NAV)
     out = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#03070f"><title>{escape(full)}</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{SITE}{path}"><meta property="og:title" content="{escape(full)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:image" content="{SITE}assets/img/og-image.png"><link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48"><link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/favicon-192.png"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png"><link rel="stylesheet" href="assets/css/premium.css"><script src="assets/js/premium.js" defer></script></head><body><a class="skip" href="#main">Skip to content</a><header class="nav-bar"><div class="wrap"><a class="signature" href="index.html" aria-label="Marcantonio Povolo, home"></a><button class="menu" aria-expanded="false" aria-controls="navigation" aria-label="Open menu">{MENU}</button><nav class="nav" id="navigation" aria-label="Main">{links}</nav></div></header><main id="main">{body}</main>{FOOTER}</body></html>'''
     import re
     out = re.sub(r'(href|src)="(?!https?:|mailto:|#|/)', r'\1="/', out)
     out = re.sub(r' data-(reveal|stagger)', '', out)
+    # Clean addresses: Cloudflare serves /projects for projects.html (and redirects the .html form).
+    out = re.sub(r'href="/index\.html"', 'href="/"', out)
+    out = re.sub(r'href="(/[^"#]*?)\.html(#[^"]*)?"', lambda m: f'href="{m.group(1)}{m.group(2) or ""}"', out)
     (R / file).parent.mkdir(parents=True, exist_ok=True)
     (R / file).write_text(out)
 
