@@ -24,7 +24,7 @@ FOOTER = f'''<footer class="footer"><div class="wrap foot-top">
 <div class="foot-col"><h2>Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="apps.html">Apps</a></li><li><a href="about.html">About</a></li></ul></div>
 <div class="foot-col"><h2>Résumé</h2><ul><li><a href="resume.html">View résumé</a></li><li><a href="assets/Marcantonio-Povolo-Resume.pdf" download>Download PDF</a></li></ul></div>
 <div class="foot-col"><h2>Connect</h2><ul><li><a href="mailto:{EMAIL}">Email</a></li><li><a href="https://www.linkedin.com/in/marcantoniopovolo/">LinkedIn</a></li><li><a href="https://github.com/povolom">GitHub</a></li></ul></div>
-</div><div class="wrap foot-bottom"><span>© 2026 Marcantonio Povolo</span><span>Built by hand in HTML and CSS, generated with a little Python.</span></div></footer>'''
+</div><div class="wrap foot-bottom"><span>© 2026 Marcantonio Povolo</span></div></footer>'''
 
 
 def page(file, title, desc, body, og='site', og_type='website', ld=None, og_alt=None):
