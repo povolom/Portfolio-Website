@@ -629,3 +629,21 @@ a,button{touch-action:manipulation}
 /* Tablets: the hero already has the download button */
 @media (max-width:900px){.r-aside{display:none}}
 @media (max-width:700px){.js .nav{background:#03070f}}
+
+/* Larger screens: the header matches the phone menu's look (bold white links, current page in blue), laid out in a row */
+@media (min-width:701px){
+  .nav-bar .wrap{height:64px}
+  .nav-bar .signature{width:172px;height:44px}
+  .nav{gap:clamp(18px,2.6vw,34px);font-size:15px}
+  .nav a{font-weight:600;letter-spacing:-.015em;color:rgba(244,247,252,.9);padding:20px 0;position:relative}
+  .nav a[aria-current]{color:var(--blue)}
+  .nav a::after{content:"";position:absolute;left:0;right:0;bottom:12px;height:2px;border-radius:2px;background:var(--blue);transform:scaleX(0);transition:transform .35s var(--ease)}
+  .nav a[aria-current]::after{transform:scaleX(1)}
+  .nav a:active{color:var(--blue)}
+  .p-hero,.hero{scroll-margin-top:64px}
+}
+@media (min-width:701px) and (hover:hover) and (pointer:fine){
+  .nav a:hover{color:var(--text)}
+  .nav a:hover::after{transform:scaleX(1);opacity:.5}
+  .nav a[aria-current]:hover::after{opacity:1}
+}
