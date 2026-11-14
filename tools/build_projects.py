@@ -116,13 +116,17 @@ for i, p in enumerate(PROJECTS):
                  f'<h1 class="display p-title" data-in style="--i:1">{p["name"]}</h1><p class="sub" data-in style="--i:2">{p["tagline"]}</p>'
                  + (f'<div class="ctas" data-in style="--i:3">{ctas}</div>' if ctas else '') + '</div></section>')
     paras = p['about']
-    story = f'<p class="lead">{paras[0]}</p>' + ''.join(f'<p>{x}</p>' for x in paras[1:])
+    # Phones show the first two paragraphs, with a button for the rest.
+    story = f'<p class="lead">{paras[0]}</p>' + ''.join(f'<p>{x}</p>' for x in paras[1:2])
+    if len(paras) > 2:
+        story += ('<div class="story-more">' + ''.join(f'<p>{x}</p>' for x in paras[2:]) + '</div>'
+                  '<button class="btn2 story-toggle" type="button" aria-expanded="false"><span>Read the full story</span></button>')
     chips = ''.join(f'<li>{c}</li>' for c in p['chips'])
     facts = (f'<aside class="facts tile"><dl><div><dt>Status</dt><dd><span class="status-pill {p["state"]}" style="margin:0">{p["label"]}</span></dd></div>'
              f'<div><dt>When</dt><dd>{p["timeline"]}</dd></div><div><dt>My role</dt><dd>{p["role"]}</dd></div>'
              f'<div><dt>Built with</dt><dd><ul class="chips">{chips}</ul></dd></div></dl>'
              + (f'<div class="facts-links">{"".join(link_html(l, h, t, False) for l, h, t in p["links"])}</div>' if p['links'] else '') + '</aside>')
-    highlights = '<div class="bento p-high">' + ''.join(f'<article class="tile t-third"><h3>{a}</h3><p>{b}</p></article>' for a, b in p['highlights']) + '</div>'
+    highlights = '<div class="bento p-high swipe">' + ''.join(f'<article class="tile t-third"><h3>{a}</h3><p>{b}</p></article>' for a, b in p['highlights']) + '</div>'
     about = (f'<section class="section tight"><div class="wrap"><h2 class="headline p-h2">About the project.</h2>'
              f'<div class="p-about"><div class="p-story">{story}</div>{facts}</div>{highlights}</div></section>')
     exp = ''.join(disclose(t, b, open_=(n == 0 and b != SOON)) for n, (t, b) in enumerate(p['experience']))
@@ -138,8 +142,20 @@ for i, p in enumerate(PROJECTS):
     next_p = PROJECTS[i + 1] if i < len(PROJECTS) - 1 else None
     next_html = (f'<section class="section tight"><nav class="wrap pager2" aria-label="More projects">'
                  f'{pager_tile(prev_p, "Previous", "prev")}{pager_tile(next_p, "Next", "next")}</nav></section>')
-    page(f'projects/{p["id"]}.html', p['name'], f'{p["name"]}: {p["tagline"]} About the project and what I learned, by Marcantonio Povolo.',
-         hero_html + about + experience + next_html + contact_band())
+    is_app = p['id'] in URL
+    work = {'@type': 'SoftwareApplication' if is_app else 'CreativeWork', 'name': p['name'], 'description': p['tagline'],
+            'url': f'https://marcantoniopovolo.com/projects/{p["id"]}', 'image': f'https://marcantoniopovolo.com/assets/img/og/{p["id"]}.jpg',
+            'creator': {'@id': 'https://marcantoniopovolo.com/#me'}, 'keywords': ', '.join(p['chips'])}
+    if is_app:
+        work.update({'applicationCategory': 'WebApplication', 'operatingSystem': 'Any (web browser)', 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'CAD'}})
+    crumbs = {'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://marcantoniopovolo.com/'},
+        {'@type': 'ListItem', 'position': 2, 'name': 'Projects', 'item': 'https://marcantoniopovolo.com/projects'},
+        {'@type': 'ListItem', 'position': 3, 'name': p['name'], 'item': f'https://marcantoniopovolo.com/projects/{p["id"]}'}]}
+    page(f'projects/{p["id"]}.html', p['name'],
+         f'{p["name"]}: {p["tagline"].rstrip(".")}. About the project, and what Marcantonio Povolo learned building it.',
+         hero_html + about + experience + next_html + contact_band(), og=p['id'], og_alt=f'{p["name"]}: {p["tagline"]}',
+         ld=[{'@context': 'https://schema.org', '@graph': [PERSON, work, crumbs]}])
 
 
 def ptile(p):

@@ -5,15 +5,31 @@ const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const menu = document.querySelector('.menu');
 const nav = document.querySelector('#navigation');
-menu?.addEventListener('click', () => {
-  const open = menu.getAttribute('aria-expanded') !== 'true';
+function setMenu(open) {
   menu.setAttribute('aria-expanded', String(open));
-  nav.classList.toggle('open', open);
   menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-});
+  nav.classList.toggle('open', open);
+  document.body.classList.toggle('menu-open', open);
+  if (open) setTimeout(() => nav.querySelector('a')?.focus({ preventScroll: true }), 80);
+}
+menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
+nav?.addEventListener('click', e => { if (e.target.closest('a') && menu.getAttribute('aria-expanded') === 'true') setMenu(false); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') { menu.click(); menu.focus(); }
+  if (e.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') { setMenu(false); menu.focus(); }
 });
+// Leaving phone width with the menu open shouldn't leave the page locked.
+matchMedia('(max-width: 700px)').addEventListener('change', e => { if (!e.matches) setMenu(false); });
+
+// Phones: "Read the full story" on project pages, "Show all" on long lists.
+document.querySelectorAll('.story-toggle').forEach(b => b.addEventListener('click', () => {
+  b.setAttribute('aria-expanded', 'true');
+  b.closest('.p-story').classList.add('story-open');
+}));
+document.querySelectorAll('.show-all').forEach(b => b.addEventListener('click', () => {
+  b.setAttribute('aria-expanded', 'true');
+  b.closest('.clip').classList.add('open');
+}));
+
 const bar = document.querySelector('.nav-bar');
 const shade = () => bar?.classList.toggle('scrolled', scrollY > 8);
 addEventListener('scroll', shade, { passive: true }); shade();

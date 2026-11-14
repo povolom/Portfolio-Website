@@ -1,0 +1,22 @@
+{
+  "name": "Marcantonio Povolo",
+  "short_name": "Marcantonio",
+  "description": "Think Bigger. Projects and apps by Marcantonio Povolo.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "minimal-ui",
+  "background_color": "#03070f",
+  "theme_color": "#03070f",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

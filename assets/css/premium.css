@@ -242,8 +242,6 @@ a.tile{text-decoration:none;transition:border-color .3s}
   .menu{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-10px;background:none;border:0;color:var(--text);cursor:pointer}
   .menu svg{width:22px;height:22px}
   .js .nav{display:none}
-  .nav.open{display:flex;position:absolute;left:0;right:0;top:52px;flex-direction:column;gap:0;background:rgba(3,7,15,.97);border-bottom:1px solid var(--line);padding:8px var(--gutter) 20px}
-  .nav a{font-size:22px;font-weight:600;padding:12px 0;color:var(--text)}
   .bento,.c-grid{grid-template-columns:1fr}
   .bento > .tile,.c-grid > .tile{grid-column:auto}
   .steps{grid-template-columns:1fr}
@@ -448,3 +446,139 @@ a.tile{text-decoration:none;transition:border-color .3s}
 .foot-col a{min-height:44px;display:inline-flex;align-items:center;padding:0}
 .foot-brand .signature{height:44px}
 @media (max-width:700px){.chips li{padding:8px 12px}}
+
+/* ===================== Phone-only content and the animated menu ===================== */
+.m-only,.story-toggle,.show-all,.m-dock{display:none}
+html{-webkit-tap-highlight-color:transparent}
+a,button{touch-action:manipulation}
+
+/* Menu button: two lines that turn into an X */
+.burger{position:relative;display:block;width:20px;height:12px}
+.burger span{position:absolute;left:0;width:100%;height:1.6px;border-radius:2px;background:currentColor;transition:transform .45s var(--ease),top .45s var(--ease)}
+.burger span:first-child{top:0}.burger span:last-child{top:calc(100% - 1.6px)}
+.menu[aria-expanded="true"] .burger span:first-child{top:calc(50% - .8px);transform:rotate(45deg)}
+.menu[aria-expanded="true"] .burger span:last-child{top:calc(50% - .8px);transform:rotate(-45deg)}
+
+@media (max-width:700px){
+  :root{--radius:22px;--gutter:max(18px,env(safe-area-inset-left))}
+  body{font-size:16px}
+  .m-only{display:inline}.d-only{display:none}
+  .nav-bar{padding-top:env(safe-area-inset-top)}
+  body.menu-open{overflow:hidden}
+  body.menu-open .nav-bar{background:rgba(3,7,15,.97);border-bottom-color:var(--line)}
+
+  /* Full-height menu sheet that fades and slides down; links follow one after another */
+  .js .nav{display:flex;position:absolute;left:0;right:0;top:100%;height:calc(100dvh - 52px - env(safe-area-inset-top));flex-direction:column;gap:0;
+    padding:18px var(--gutter) calc(32px + env(safe-area-inset-bottom));background:rgba(3,7,15,.985);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+    visibility:hidden;opacity:0;transform:translateY(-10px);transition:opacity .35s var(--ease),transform .5s var(--ease),visibility 0s linear .5s;overflow-y:auto}
+  .js .nav.open{visibility:visible;opacity:1;transform:none;transition:opacity .35s var(--ease),transform .5s var(--ease),visibility 0s}
+  .js .nav a{font-size:30px;font-weight:700;letter-spacing:-.03em;color:var(--text);padding:12px 0;border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(-12px);transition:opacity .3s var(--ease),transform .45s var(--ease),color .2s}
+  .js .nav a[aria-current]{color:var(--blue)}
+  .js .nav.open a{opacity:1;transform:none}
+  .js .nav.open a:nth-child(1){transition-delay:.06s}.js .nav.open a:nth-child(2){transition-delay:.1s}.js .nav.open a:nth-child(3){transition-delay:.14s}
+  .js .nav.open a:nth-child(4){transition-delay:.18s}.js .nav.open a:nth-child(5){transition-delay:.22s}.js .nav.open a:nth-child(6){transition-delay:.26s}
+  .js .nav a:active{color:var(--blue)}
+
+  /* Rhythm: tighter sections, smaller type */
+  .hero{padding:44px 0 16px}
+  .page-hero{padding-bottom:40px}
+  .display{font-size:clamp(40px,12.5vw,54px)}
+  .kicker{font-size:17px}
+  .sub{font-size:18px;margin-top:14px}
+  .aside{font-size:13px;margin-top:16px}
+  .ctas{margin-top:22px;gap:10px 22px;font-size:16px}
+  .section{padding:64px 0}
+  .section.tight{padding-top:0}
+  .section-intro{margin-bottom:24px}
+  .headline{font-size:32px}
+  .tile{padding:22px}
+  .tile h3{font-size:22px}
+  .tile p{font-size:15px}
+  .portrait{max-width:88%;margin-top:32px}
+  .portrait img{aspect-ratio:1/1}
+
+  /* Swipe rows instead of tall stacks */
+  .swipe{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(-1 * var(--gutter));padding:2px var(--gutter) 6px;scroll-padding:0 var(--gutter);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .swipe::-webkit-scrollbar{display:none}
+  .swipe > .tile{flex:0 0 80%;scroll-snap-align:start;grid-column:auto}
+  .big-stat{font-size:44px;padding-top:18px}
+  .tile-icon{width:52px;height:52px;border-radius:13px;margin-top:18px}
+
+  /* Home work and the Projects list become compact rows */
+  .work a,.proj{display:grid;grid-template-columns:60px minmax(0,1fr);column-gap:16px;row-gap:2px;align-items:center;text-align:left;min-height:0;padding:16px 18px}
+  .work a > *,.proj > *{grid-column:2}
+  .work .icon,.work .icon.logo,.proj-icon,.proj-icon.logo{grid-column:1;grid-row:1/span 3;width:60px;margin:0;border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.4)}
+  .work .icon.logo,.proj-icon.logo{border-radius:0;box-shadow:none}
+  .work .state,.proj .status-pill{margin:0;font-size:12px}
+  .proj .status-pill{padding:3px 10px;justify-self:start}
+  .work h3,.proj h3{font-size:19px;letter-spacing:-.02em}
+  .work .lead,.proj p{font-size:14px;margin:2px 0 0;color:var(--muted)}
+  .work a > p:not(.state):not(.lead),.work .more,.proj .more{display:none}
+  .work,.proj-grid{gap:10px}
+  .steps li{padding-top:16px}
+  .steps h3{font-size:19px}
+
+  /* Project pages */
+  .p-icon{width:84px;margin-bottom:16px}
+  .p-icon.logo{width:110px}
+  .p-title{font-size:clamp(36px,11vw,48px)}
+  .p-about{gap:20px}
+  .facts{order:-1;padding:18px}
+  .facts dl{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+  .facts dl > div{padding:10px 0}
+  .facts dl > div:first-child{padding-top:10px}
+  .facts dl > div:last-child{grid-column:1/-1;border-bottom:0}
+  .facts-links{display:none}
+  .p-story .lead{font-size:20px}
+  .p-story p{font-size:16px;line-height:1.65}
+  .story-more{display:block;max-height:0;overflow:hidden;opacity:0;transition:max-height .6s var(--ease),opacity .4s var(--ease)}
+  .story-open .story-more{max-height:2000px;opacity:1}
+  .story-toggle{display:inline-flex}
+  .story-open .story-toggle{display:none}
+  .p-high{margin-top:28px}
+  .disclose > button{font-size:18px;padding:18px 0}
+  .next-project,.pager-tile{padding:18px}
+
+  /* Apps */
+  .app-strip{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:28px calc(-1 * var(--gutter)) 0;padding:4px var(--gutter);scrollbar-width:none;gap:18px}
+  .app-strip::-webkit-scrollbar{display:none}
+  .app-strip img{width:52px;height:52px}
+  .app-hero{padding:52px 0}
+  .app-hero img{width:92px;margin-bottom:18px}
+  .app-hero h2{font-size:36px}
+  .app-meta{margin-top:16px}
+
+  /* About: three entries per list, then a button for the rest */
+  .story .lead{font-size:20px}
+  .story p{font-size:16px}
+  .clip:not(.open) .timeline li:nth-child(n+4){display:none}
+  .clip.open .timeline li:nth-child(n+4){animation:rise .5s var(--ease) both}
+  .show-all{display:inline-flex;margin-top:18px}
+  .clip.open .show-all{display:none}
+  .timeline li{padding:16px 0}
+  .timeline h3{font-size:18px}
+
+  /* Résumé: the download stays in reach at the bottom */
+  .r-aside{display:none}
+  .r-sec{padding:26px 0}
+  .r-sec h3{font-size:20px}
+  .m-dock{display:flex;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:9;align-items:center;justify-content:space-between;gap:12px;
+    padding:10px 10px 10px 18px;border-radius:999px;background:rgba(15,31,58,.92);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(0,0,0,.5),inset 0 0 0 1px var(--line-2);font-size:14px;color:var(--muted)}
+  .m-dock .pill{min-height:42px;padding:0 18px}
+  main:has(.m-dock){padding-bottom:84px}
+
+  /* Contact */
+  .contact{padding:72px 0 64px}
+  .email{font-size:clamp(19px,6vw,26px)}
+  .c-grid .tile h3{font-size:22px !important}
+
+  /* Footer */
+  .foot-top{gap:8px 20px;padding-top:44px;padding-bottom:20px}
+  .foot-brand{margin-bottom:12px}
+  .foot-bottom{flex-direction:column;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+}
+@media (max-width:700px) and (prefers-reduced-motion:reduce){
+  .js .nav,.js .nav a,.burger span,.story-more{transition:none}
+  .clip.open .timeline li{animation:none}
+}
