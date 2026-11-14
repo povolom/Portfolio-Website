@@ -5,7 +5,11 @@ const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const menu = document.querySelector('.menu');
 const nav = document.querySelector('#navigation');
+let animTimer;
 function setMenu(open) {
+  // Animate only for an actual open or close, so resizing the window never flashes the menu.
+  document.body.classList.add('menu-anim');
+  clearTimeout(animTimer); animTimer = setTimeout(() => document.body.classList.remove('menu-anim'), 700);
   menu.setAttribute('aria-expanded', String(open));
   menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   nav.classList.toggle('open', open);

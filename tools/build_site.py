@@ -9,6 +9,7 @@ SITE = 'https://marcantoniopovolo.com/'
 URL = {k: f'https://{k}.marcantoniopovolo.com/' for k in ('markets', 'trains', 'photos', 'lineups', 'closet', 'cloudform')}
 CODE = 'https://github.com/povolom/'
 EMAIL = 'contact@marcantoniopovolo.com'
+EMAIL_BR = 'contact<wbr>@marcantoniopovolo.com'   # lets a narrow screen break the address at the @, never mid-word
 NAV = [('index.html', 'Home'), ('projects.html', 'Projects'), ('apps.html', 'Apps'), ('about.html', 'About'), ('resume.html', 'Résumé'), ('contact.html', 'Contact')]
 MENU = '<span class="burger" aria-hidden="true"><span></span><span></span></span>'
 PAGES = []   # every published address, for sitemap.xml
@@ -70,7 +71,7 @@ def hero(title, sub='', extra='', kicker=''):
 
 
 def contact_band(title='Got a big idea?<br>Let’s talk.', sub='Engineering, software, or something worth figuring out.'):
-    return f'<section class="contact"><div class="wrap" data-reveal><h2 class="headline">{title}</h2><p class="sub">{sub}</p><a class="email" href="mailto:{EMAIL}">{EMAIL}</a><div class="ctas" style="margin-top:22px"><button class="btn2" type="button" data-copy="{EMAIL}"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 10.5V4a1.5 1.5 0 0 1 1.5-1.5H11" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Copy email</span></button></div></div></section>'
+    return f'<section class="contact"><div class="wrap" data-reveal><h2 class="headline">{title}</h2><p class="sub">{sub}</p><a class="email" href="mailto:{EMAIL}">{EMAIL_BR}</a><div class="ctas" style="margin-top:22px"><button class="btn2" type="button" data-copy="{EMAIL}"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 10.5V4a1.5 1.5 0 0 1 1.5-1.5H11" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Copy email</span></button></div></div></section>'
 
 
 # ---------- Home ----------
@@ -162,8 +163,8 @@ page('about.html', 'About', 'About Marcantonio Povolo: Computer Engineering at T
 <p>Outside engineering I’m a photographer (twice winning my high school’s Arts Fest photography award), a self-taught guitarist, and a former competitive dancer. Eight years of dance taught me discipline and how to learn fast when the plan changes.</p>
 </div></div></section>
 <section class="section tight"><div class="wrap"><div class="bento" data-stagger>
- <article class="tile t-wide" data-reveal><p class="label">Learning now</p><h3>CS50x: Introduction to Computer Science</h3><p>Harvard / edX. C, arrays, memory and algorithms, then Python, SQL and web. Working through it on the train and on weekends, alongside my own projects.</p><span class="spacer"></span><div class="ctas" style="justify-content:flex-start"><a class="more" href="https://cs50.harvard.edu/x/"{EXT}>About the course</a></div></article>
- <article class="tile t-narrow" data-reveal><p class="label">Progress</p><h3>In progress</h3><div class="big-stat">Week 3</div></article>
+ <article class="tile t-wide" data-reveal><p class="label">Learning now</p><h3>CS50x: Introduction to Computer Science</h3><p>Harvard / edX. C, arrays, memory and algorithms, then Python, SQL and web. Working through it on the train and on weekends, alongside my own projects.</p><div class="big-stat m-block">Week 3</div><span class="spacer"></span><div class="ctas" style="justify-content:flex-start"><a class="more" href="https://cs50.harvard.edu/x/"{EXT}>About the course</a></div></article>
+ <article class="tile t-narrow d-block"><p class="label">Progress</p><h3>In progress</h3><div class="big-stat">Week 3</div></article>
 </div></div></section>
 <section class="section tight"><div class="wrap"><div class="section-intro" data-reveal><h2 class="headline">Learning alongside<br>other people.</h2><p class="sub">Engineering is also about communicating clearly and contributing to a team.</p></div>{timeline(EXPERIENCE)}</div></section>
 <section class="section tight"><div class="wrap"><div class="section-intro" data-reveal><h2 class="headline">Where I learned<br>to lead.</h2><p class="sub">High school, 2021 to 2025.</p></div>{timeline(SCHOOL)}</div></section>
@@ -192,10 +193,10 @@ page('resume.html', 'Résumé', 'The résumé of Marcantonio Povolo, a TMU Compu
 page('contact.html', 'Contact', 'Get in touch with Marcantonio Povolo about internships, engineering, software and product work, by email, LinkedIn or GitHub.',
      hero('Let’s build<br>something bigger.', 'Have a project in mind, an opportunity to share, or an idea worth talking about? I’d love to hear it.')
      + f'''<section class="section tight"><div class="wrap"><div class="c-grid" data-stagger>
- <a class="tile" style="grid-column:span 6" href="mailto:{EMAIL}" data-reveal><p class="label">Email</p><h3 style="font-size:clamp(24px,4.6vw,52px)">{EMAIL}</h3><p>The best place to start a conversation.</p><span class="more">Write to me</span></a>
- <a class="tile" style="grid-column:span 3" href="https://www.linkedin.com/in/marcantoniopovolo/" data-reveal><p class="label">LinkedIn</p><h3>Connect professionally.</h3><p>Education, experience and updates.</p><span class="more">Open LinkedIn</span></a>
- <a class="tile" style="grid-column:span 3" href="https://github.com/povolom" data-reveal><p class="label">GitHub</p><h3>povolom</h3><p>Code, experiments and ongoing learning.</p><span class="more">Open GitHub</span></a>
- <article class="tile" style="grid-column:span 6" data-reveal><p class="label">Based in GTA</p><h3>Interested in what’s next.</h3><p>I’m exploring Summer 2027 opportunities in software development, firmware, embedded systems and technical product development, especially on teams that connect software with hardware and put thoughtful products in people’s hands.</p><span class="spacer"></span><div class="ctas" style="justify-content:flex-start"><a class="more" href="resume.html">View my résumé</a></div></article>
+ <a class="tile c-full c-email" href="mailto:{EMAIL}"><p class="label">Email</p><h3>{EMAIL_BR}</h3><p>The best place to start a conversation.</p><span class="more">Write to me</span></a>
+ <a class="tile c-half" href="https://www.linkedin.com/in/marcantoniopovolo/"><p class="label">LinkedIn</p><h3>Connect professionally.</h3><p>Education, experience and updates.</p><span class="more">Open LinkedIn</span></a>
+ <a class="tile c-half" href="https://github.com/povolom"><p class="label">GitHub</p><h3>povolom</h3><p>Code, experiments and ongoing learning.</p><span class="more">Open GitHub</span></a>
+ <article class="tile c-full"><p class="label">Based in GTA</p><h3>Interested in what’s next.</h3><p>I’m exploring Summer 2027 opportunities in software development, firmware, embedded systems and technical product development, especially on teams that connect software with hardware and put thoughtful products in people’s hands.</p><span class="spacer"></span><div class="ctas" style="justify-content:flex-start"><a class="more" href="resume.html">View my résumé</a></div></article>
 </div></div></section>''')
 
 # ---------- 404 ----------

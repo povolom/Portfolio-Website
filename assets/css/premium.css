@@ -582,3 +582,50 @@ a,button{touch-action:manipulation}
   .js .nav,.js .nav a,.burger span,.story-more{transition:none}
   .clip.open .timeline li{animation:none}
 }
+
+/* ===================== Fixes from the phone review ===================== */
+/* Glows fade out before the edge of their section instead of stopping in a hard line */
+.hero::before,.app-hero::before{-webkit-mask:linear-gradient(to bottom,#000 55%,transparent 92%);mask:linear-gradient(to bottom,#000 55%,transparent 92%)}
+/* A block that is both .wrap and .section keeps its side padding */
+.wrap.section{padding-left:var(--gutter);padding-right:var(--gutter)}
+/* Contact cards */
+.c-full{grid-column:1/-1}.c-half{grid-column:span 3}
+.c-email h3{font-size:clamp(24px,4.6vw,52px)}
+.m-block{display:none}
+/* Space between a project's hero and "About the project." */
+.p-hero + .section{padding-top:clamp(8px,2vw,24px)}
+
+@media (max-width:900px){.c-half{grid-column:span 3}}
+@media (max-width:700px){
+  .c-full,.c-half{grid-column:1/-1}
+  .c-email h3{font-size:clamp(20px,6.2vw,26px);letter-spacing:-.025em}
+  .m-block{display:block}.d-block{display:none}
+  .p-hero{padding-bottom:36px}
+  .p-hero + .section{padding-top:12px}
+  .page-hero::before{height:440px}
+  /* Steps: number beside the text */
+  .steps li{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:8px;padding:16px 0 0}
+  .steps li::before{grid-row:1/span 2;margin:2px 0 0}
+  .steps p{margin-top:4px}
+  /* Footer: brand on top, three tidy columns of links */
+  .foot-top{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 12px}
+  .foot-brand{grid-column:1/-1;margin-bottom:16px}
+  .foot-col h2{font-size:12px;margin-bottom:2px}
+  .foot-col a{font-size:14px}
+  /* Projects rows: glow behind the icon */
+  .proj{background:radial-gradient(circle at 48px 50%,color-mix(in srgb,var(--c) 30%,transparent),transparent 60%),linear-gradient(180deg,var(--tile-2),var(--tile))}
+  .big-stat.m-block{font-size:40px;padding-top:16px;margin-top:4px}
+  .r-sec{padding:24px 0}
+}
+
+/* The phone menu only animates when it's opened or closed, never when the window resizes */
+@media (max-width:700px){
+  .js .nav,.js .nav a{transition:none}
+  .js .menu-anim .nav{transition:opacity .35s var(--ease),transform .5s var(--ease),visibility 0s linear .5s}
+  .js .menu-anim .nav.open{transition:opacity .35s var(--ease),transform .5s var(--ease),visibility 0s}
+  .js .menu-anim .nav a{transition:opacity .3s var(--ease),transform .45s var(--ease),color .2s}
+}
+
+/* Tablets: the hero already has the download button */
+@media (max-width:900px){.r-aside{display:none}}
+@media (max-width:700px){.js .nav{background:#03070f}}
