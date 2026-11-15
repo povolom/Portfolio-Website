@@ -8,6 +8,7 @@ R = Path(__file__).resolve().parent.parent
 SITE = 'https://marcantoniopovolo.com/'
 URL = {k: f'https://{k}.marcantoniopovolo.com/' for k in ('markets', 'trains', 'photos', 'lineups', 'closet', 'cloudform')}
 CODE = 'https://github.com/povolom/'
+RELEASES = 'https://github.com/povolom/Markets-by-MP/releases/latest'
 EMAIL = 'contact@marcantoniopovolo.com'
 EMAIL_BR = 'contact<wbr>@marcantoniopovolo.com'   # lets a narrow screen break the address at the @, never mid-word
 NAV = [('index.html', 'Home'), ('projects.html', 'Projects'), ('apps.html', 'Apps'), ('apis.html', 'APIs'), ('about.html', 'About'), ('resume.html', 'Résumé'), ('contact.html', 'Contact')]
@@ -75,7 +76,7 @@ def contact_band(title='Got a big idea?<br>Let’s talk.', sub='Engineering, sof
 
 
 # ---------- Home ----------
-WORK = [('markets', 'assets/img/projects/markets.webp', 'Markets by MP', 'My TSX and US stocks together, in Canadian dollars.', 'Live US prices, total return, allocation and a chart of the whole portfolio.', 'soon', 'Coming soon'),
+WORK = [('markets', 'assets/img/projects/markets.webp', 'Markets by MP', 'Your investments, on your own computer.', 'A free app for Mac and Windows with watchlists, dip alerts and portfolio tracking, on a public API.', 'live', 'Live'),
         ('cloudform', 'assets/img/cloudform-logo.png', 'Cloudform', 'The company I co-founded.', 'I led it as CEO from 2021 to 2026. Its website went through more than 40 versions.', 'live', 'Live'),
         ('website', 'assets/img/projects/website.webp', 'This website', 'One script. Every page.', 'Generated from a single Python script and deployed from GitHub to Cloudflare.', 'live', 'Live'),
         ('coursework', 'assets/img/projects/coursework.webp', 'Engineering coursework', 'The foundation.', 'Object-oriented Java, digital logic in VHDL and op-amp circuits from second-year Computer Engineering.', '', 'Completed')]
@@ -101,7 +102,7 @@ page('index.html', 'Think Bigger.', 'Marcantonio Povolo is a Computer Engineerin
  <div class="section-intro" data-reveal><h2 class="headline">Right now.</h2></div>
  <div class="bento swipe" data-stagger>
   <article class="tile t-third" data-reveal><p class="label">CS50x</p><h3>Harvard’s intro to computer science.</h3><p>In progress, alongside school.</p><div class="big-stat">Week 3</div></article>
-  <a class="tile t-third" href="/projects/markets.html" data-reveal><p class="label">Markets by MP</p><h3>Built. Now in testing.</h3><p>It opens to the public once testing is done.</p><img class="tile-icon" src="assets/img/projects/markets.webp" alt="" width="72" height="72" loading="lazy"></a>
+  <a class="tile t-third" href="/projects/markets.html" data-reveal><p class="label">Markets by MP</p><h3>Out now for Mac and Windows.</h3><p>Free, open source, and it runs on your own computer.</p><img class="tile-icon" src="assets/img/projects/markets.webp" alt="" width="72" height="72" loading="lazy"></a>
   <article class="tile t-third" data-reveal><p class="label">Next</p><h3>Summer 2027 internships.</h3><p>Especially structured programs in product, program and project management.</p><span class="spacer"></span><a class="more" href="resume.html">See my résumé</a></article>
  </div>
 </div></section>
@@ -123,15 +124,24 @@ page('index.html', 'Think Bigger.', 'Marcantonio Povolo is a Computer Engineerin
 
 
 # ---------- Apps ----------
-APPS = [('markets', 'Markets', '#10b981', 'My TSX and US stocks in Canadian dollars, with live US prices.'),
+APPS = [('markets', 'Markets', '#10b981', 'Track what you own and what you want to buy, with dip alerts. For Mac and Windows.'),
         ('trains', 'Trains', '#3b82f6', 'Pick your GO train trips and get calendar entries for them.'),
         ('photos', 'Photos', '#8b5cf6', 'A fast gallery for my photography.'),
         ('lineups', 'Lineups', '#f97316', 'A research desk for daily fantasy.'),
         ('closet', 'Closet', '#ec4899', 'A closet that builds itself from daily photos.')]
 strip = ''.join(f'<li><a href="#app-{s}"><img src="assets/icons/apps/{s}.png" alt="" width="56" height="56">{w}</a></li>' for s, w, c, d in APPS)
-apps = ''.join(f'<section class="app-hero" id="app-{s}" style="--glow:{c}"><div class="wrap" data-reveal><img src="assets/icons/apps/{s}.png" alt="" width="148" height="148" loading="lazy"><h2>{w} <span>by MP</span></h2><p class="sub">{d}</p><div class="app-meta"><strong>Coming soon</strong><br>{s}.marcantoniopovolo.com</div><div class="ctas" style="margin-top:18px"><a class="pill" href="{URL[s]}">Open the app</a><a class="more" href="/projects/{s}.html">How I built it</a></div></div></section>' for s, w, c, d in APPS)
-page('apps.html', 'Apps', 'Five apps by Marcantonio Povolo, each at its own web address: Markets, Trains, Photos, Lineups and Closet by MP. All coming soon, and open source.',
-     hero('Small apps.<br>Built to be used.', 'Each one gets its own web address and a download for your phone or computer. None are open yet.', f'<ul class="app-strip">{strip}</ul>')
+def app_actions(s):
+    """Buttons say exactly where they go: Markets downloads; the others have a page until they launch."""
+    if s == 'markets':
+        return (f'<div class="app-meta"><strong>Out now</strong><br>Mac and Windows · free</div><div class="ctas" style="margin-top:18px">'
+                f'<a class="pill" href="{RELEASES}">Download the app</a><a class="more" href="{URL[s]}">Try the demo</a><a class="more" href="/projects/{s}.html">How I built it</a></div>')
+    return (f'<div class="app-meta"><strong>Coming soon</strong><br>{s}.marcantoniopovolo.com</div><div class="ctas" style="margin-top:18px">'
+            f'<a class="pill" href="{URL[s]}">See its page</a><a class="more" href="/projects/{s}.html">How I built it</a></div>')
+
+
+apps = ''.join(f'<section class="app-hero" id="app-{s}" style="--glow:{c}"><div class="wrap" data-reveal><img src="assets/icons/apps/{s}.png" alt="" width="148" height="148" loading="lazy"><h2>{w} <span>by MP</span></h2><p class="sub">{d}</p>{app_actions(s)}</div></section>' for s, w, c, d in APPS)
+page('apps.html', 'Apps', 'Apps by Marcantonio Povolo: Markets by MP, out now for Mac and Windows, plus Trains, Photos, Lineups and Closet by MP, coming soon. All open source.',
+     hero('Small apps.<br>Built to be used.', 'Markets is out now for Mac and Windows. The rest are on the way, each with its own page until it launches.', f'<ul class="app-strip">{strip}</ul>')
      + apps + contact_band('Want to try one early?', 'Tell me which app and what you’d use it for.'))
 
 
@@ -148,12 +158,12 @@ ENDPOINTS = [('GET', '/assets/search?q=shopify', 'Find stocks, ETFs, crypto and 
 eps = ''.join(f'<li><span class="api-verb">{v}</span><code>{escape(path)}</code><span class="api-what">{d}</span></li>' for v, path, d in ENDPOINTS)
 OTHER_APIS = [('trains', 'Trains', 'GO train trips you pick, as calendar entries.'), ('photos', 'Photos', 'My photography, with fast image sizes for any screen.'),
               ('lineups', 'Lineups', 'Daily fantasy research data.'), ('closet', 'Closet', 'Outfits and items from a closet that builds itself.')]
-others = ''.join(f'<a class="tile t-half api-other" href="{URL[a]}api/status"><p class="state soon">Coming soon</p><h3>{n} API</h3><p>{d}</p><code class="api-base">{a}.marcantoniopovolo.com/api/</code><span class="more">Check its status</span></a>' for a, n, d in OTHER_APIS)
+others = ''.join(f'<a class="tile t-half api-other" href="{URL[a]}api/status"><p class="state soon">Coming soon</p><h3>{n} API</h3><p>{d}</p><code class="api-base">{a}.marcantoniopovolo.com/api/</code><span class="more">See its status</span></a>' for a, n, d in OTHER_APIS)
 page('apis.html', 'APIs', 'Open APIs by Marcantonio Povolo. Every app runs on its own documented API. The Markets API gives keyless stock, ETF, crypto and currency data with an OpenAPI reference.',
      hero('Open APIs.<br>Build on them.', 'Every app I make runs on its own API, the same one anyone can call. Public data needs no key, and everything is documented and open source.', kicker='For developers')
      + f'''<section class="section tight"><div class="wrap"><div class="bento" data-stagger>
  <article class="tile t-full api-hero" data-reveal>
-  <div class="api-head"><img src="assets/icons/apps/markets.png" alt="" width="64" height="64"><div><p class="state soon">Coming soon</p><h3>Markets API</h3></div></div>
+  <div class="api-head"><img src="assets/icons/apps/markets.png" alt="" width="64" height="64"><div><p class="state live">Live</p><h3>Markets API</h3></div></div>
   <p>The API behind Markets by MP: search 12,000+ US and Canadian stocks and ETFs, crypto and currencies, then get quotes, daily history, statistics, dividends, dips and market overviews. The Markets website and the desktop app use exactly these routes.</p>
   <div class="api-stats" data-stats="{MAPI}/stats" aria-live="polite">
    <div><b data-k="downloads">…</b><span>app downloads</span></div>
@@ -167,7 +177,7 @@ page('apis.html', 'APIs', 'Open APIs by Marcantonio Povolo. Every app runs on it
  </article>
  <article class="tile t-third" data-reveal><p class="label">No key needed</p><h3>Free to call.</h3><p>Public market data is keyless: 120 requests a minute per address, more when signed in. Errors and limits are plain JSON.</p></article>
  <article class="tile t-third" data-reveal><p class="label">Honest data</p><h3>Every value says where it came from.</h3><p>Each response names its source and time. Hosted stock prices are labelled demo data until a licensed feed is connected; exchange rates are real.</p></article>
- <article class="tile t-third" data-reveal><p class="label">Run your own</p><h3>Or take it with you.</h3><p>The Markets desktop app for Mac and Windows runs the whole API on your own computer, with real prices and no key.</p><span class="spacer"></span><a class="more" href="{URL['markets']}">Get the app</a></article>
+ <article class="tile t-third" data-reveal><p class="label">Run your own</p><h3>Or take it with you.</h3><p>The Markets desktop app for Mac and Windows runs the whole API on your own computer, with real prices and no key.</p><span class="spacer"></span><a class="more" href="{RELEASES}">Download the app</a></article>
 </div></div></section>
 <section class="section tight"><div class="wrap"><div class="section-intro" data-reveal><h2 class="headline">Every app,<br>its own API.</h2><p class="sub">Each app lives at its own address, with its API under /api/.</p></div><div class="bento" data-stagger>{others}</div></div></section>
 ''' + contact_band('Building something with these?', 'Tell me what you made, or what endpoint you wish existed.'))
@@ -220,7 +230,7 @@ RESUME = ''.join([
     rsec('Skills', '<dl class="skills"><dt>Languages</dt><dd>C, Java, Lua, VHDL, HTML (learning), CSS (learning), JavaScript (learning), Python (learning)</dd><dt>Robotics and systems</dt><dd>ROS 2, Docker, Linux (Ubuntu), Git and GitHub</dd><dt>Hardware and tools</dt><dd>Quartus, MultiSIM, circuit analysis, VS Code, Geany, NetBeans</dd><dt>Design</dt><dd>UI design, Photoshop, Premiere Pro, Canva, photography, Figma</dd></dl>'),
     rsec('Experience', '<div class="r-item"><h3>TMU Velocity</h3><h4>Software Team Member. 2026 to now.</h4><ul><li>Completed software onboarding Labs 1 and 2 for the RoboRacer (F1TENTH) autonomous racing program in ROS 2 on Ubuntu.</li><li>Set up the RoboRacer simulator in Docker and wrote an AI-assisted emergency-braking safety node, tested in simulation.</li></ul></div><div class="r-item"><h3>Cloudform LLC</h3><h4><span class="nowrap">Co-founder</span> and CEO. 2021 to 2026.</h4><ul><li>Led an independent game-development and early software company: product direction, planning, branding and team coordination.</li><li>Directed the Roblox game <em>The Lost Jungle</em> through 11 delivered maps with scripters and freelance builders, modellers and animators.</li></ul></div><div class="r-item"><h3>Metro</h3><h4>Produce Clerk. August 2023 to now.</h4><p>Part-time, alongside full-time studies.</p></div>'),
     rsec('Leadership', '<div class="r-item"><h3>Campus and community</h3><ul><li>TMU Velocity Software Team, September 2026 to now</li><li>MUES Communications Committee, September 2026 to now</li><li>TMU MetRobotics Outreach Team, October 2025 to May 2026</li><li>Engineers for a Sustainable World, TMU, 2025 to now</li></ul></div><div class="r-item"><h3>High school leadership</h3><ul><li>Core Retreat Leader and Eco Team lead, 2024 to 2025</li><li>Retreat Leader, 2023 to 2024</li><li>Student Ambassador, 2021 to 2025</li></ul><p>Also Best Buddies, Domestic and International Outreach, Students 4 Action, Safe and Caring, Thanksgiving Food Drive and Multicultural Night.</p></div>'),
-    rsec('Projects', '<div class="r-item"><h3>Markets by MP</h3><p>Installable investing app: live US prices, TSX prices, CAD conversion, a portfolio chart and allocation. Built with AI coding tools; I review and test each change.</p></div><div class="r-item"><h3>This website</h3><p>Responsive portfolio generated with Python and deployed on Cloudflare.</p></div><div class="r-item"><h3>Trains by MP and Photos by MP</h3><p>Coming soon: GO train trips as calendar entries, and a fast gallery for my photography.</p></div><div class="ctas" style="justify-content:flex-start;margin-top:16px"><a class="more" href="projects.html">Explore project details</a></div>'),
+    rsec('Projects', '<div class="r-item"><h3>Markets by MP</h3><p>Investing app for Mac and Windows (Tauri) on a public, documented API (TypeScript, Hono, OpenAPI, Cloudflare Workers): watchlists, portfolio tracking and dip alerts. Built with AI coding tools; I review and test each change.</p></div><div class="r-item"><h3>This website</h3><p>Responsive portfolio generated with Python and deployed on Cloudflare.</p></div><div class="r-item"><h3>Trains by MP and Photos by MP</h3><p>Coming soon: GO train trips as calendar entries, and a fast gallery for my photography.</p></div><div class="ctas" style="justify-content:flex-start;margin-top:16px"><a class="more" href="projects.html">Explore project details</a></div>'),
 ])
 page('resume.html', 'Résumé', 'The résumé of Marcantonio Povolo, a TMU Computer Engineering student looking for Summer 2027 internships: education, skills, experience and projects, with a PDF to download.',
      hero('The bigger picture,<br>on one page.', 'Computer Engineering student looking for Summer 2027 internships.', '<div class="ctas"><a class="pill" href="assets/Marcantonio-Povolo-Resume.pdf" download>Download PDF</a><a class="more" href="contact.html">Get in touch</a></div>')

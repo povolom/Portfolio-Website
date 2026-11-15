@@ -54,7 +54,7 @@ def glow(hex_):
 shot('site', 'Marcantonio Povolo', 'Think Bigger.', 'Computer Engineering at TMU. I build apps and co-founded Cloudform.',
      f'<img class="photo" src="{(A / "img" / "portrait.jpg").as_uri()}">', size=104)
 
-PROJECTS = [('markets', 'Markets by MP', 'My TSX and US stocks together, in Canadian dollars.', 'img/projects/markets.webp', '#10b981', False),
+PROJECTS = [('markets', 'Markets by MP', 'Your investments, on your own computer.', 'img/projects/markets.webp', '#10b981', False),
             ('cloudform', 'Cloudform', 'The company I co-founded, and its home on the web.', 'img/cloudform-logo.png', '#7ccfff', True),
             ('website', 'This website', 'marcantoniopovolo.com, built one page at a time.', 'img/projects/website.webp', '#4da3ff', False),
             ('coursework', 'Engineering coursework', 'Labs that build the foundation.', 'img/projects/coursework.webp', '#b3a0ff', False),

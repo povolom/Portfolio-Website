@@ -6,19 +6,18 @@
 SOON = 'Coming soon. I’m writing this part myself.'
 
 PROJECTS = [
- dict(id='markets', name='Markets by MP', icon='assets/img/projects/markets.webp', color='#10b981', state='soon', label='Coming soon',
-      tagline='My TSX and US stocks together, in Canadian dollars.',
-      about=['Markets shows my TSX and US stocks together, in Canadian dollars: live US prices, today’s change, total return, allocation and a chart of the whole portfolio.',
-             'It installs on a phone or computer like a regular app, walks new users through getting a free data key, and keeps keys and holdings in the browser. Visitors without a key see a demo portfolio.',
-             'It began on September 27, 2026 as a Python and SQLite script on my laptop, with input validation and eight tests. A day later it was a web app called Portfolio Lab, then Investing Tracker. On October 3 it became Markets by MP: redesigned as a real investing app with live US prices, at its own address.',
-             'Free data has tight limits. Finnhub allows 60 requests a minute for US prices and Alpha Vantage 25 a day for Toronto prices, so the app caches prices and spaces out its requests. All the maths lives in one file with no browser code, so it can be tested on its own.',
-             'It’s built, and I’m testing it before opening it up.'],
-      highlights=[('Live prices', 'Live US prices and delayed Toronto prices, converted at the daily rate.'),
-                  ('The whole picture', 'Today’s change, total return, allocation and a chart of the portfolio.'),
-                  ('Yours alone', 'No accounts. Keys and holdings never leave your device.')],
+ dict(id='markets', name='Markets by MP', icon='assets/img/projects/markets.webp', color='#10b981', state='live', label='Live',
+      tagline='Track what you own and what you want to buy. On your own computer.',
+      about=['Markets is an investing app for tracking what you own and what you want to buy: watchlists, a portfolio with CSV import, Dip Radar alerts when something falls by an amount you choose, Buy Plans, What-If and Portfolio X-Ray.',
+             'It’s a free desktop app for Mac and Windows, about 6 MB. It runs entirely on your own computer: no account, real prices for US and Canadian stocks, ETFs, indexes, crypto and currencies, and your data never leaves the device. The website is a showcase with a demo.',
+             'It began on September 27, 2026 as a Python and SQLite script on my laptop. On October 3 it became Markets by MP. In November I rebuilt it as a full platform: a TypeScript and React app on a documented API (Hono with OpenAPI, on Cloudflare Workers and D1), then a Tauri desktop app that runs that same API inside the app.',
+             'Free stock data can’t be shown to everyone, and that shaped the design. The website uses clearly labelled demo prices, while the desktop app fetches real prices on your own computer, for your own use. The API behind both is public, keyless and documented.'],
+      highlights=[('Runs on your computer', 'Mac and Windows, about 6 MB, no account needed.'),
+                  ('Dip Radar', 'You decide what a dip is; it tells you when your rule matches.'),
+                  ('Open API', 'The same documented API powers the app and anyone’s code.')],
       timeline='September 2026 to now', role='Product decisions, review and testing',
-      chips=['JavaScript', 'REST APIs', 'SVG charts', 'Installable web app', 'Python', 'SQLite'],
-      links=[('Open the app', URL['markets'], None), ('View code', CODE + 'Markets-by-MP', None)],
+      chips=['TypeScript', 'React', 'Hono and OpenAPI', 'Cloudflare Workers', 'Tauri', 'SQLite'],
+      links=[('Download the app', RELEASES, None), ('Try the demo', URL['markets'], None), ('API reference', URL['markets'] + 'api/v1/docs', None), ('View code', CODE + 'Markets-by-MP', None)],
       experience=[('My role', 'I decide what it should do, use AI coding tools to write the code faster, then review, test and fix each change.'),
                   ('What was hardest', SOON), ('What I learned', SOON), ('What I’d do differently', SOON)]),
  dict(id='cloudform', name='Cloudform', icon='assets/img/cloudform-logo.png', logo=True, color='#7ccfff', state='live', label='Live',
@@ -67,7 +66,7 @@ PROJECTS = [
              'I’m starting with the product side: a one-page brief and a short survey of TMU commuters about what actually slows them down, then the smallest version that helps.'],
       highlights=[('Pick your trips', 'Choose the trains you actually take.'), ('Calendar entries', 'Your commute beside your classes.'), ('Free data', 'Official GO Transit schedules.')],
       timeline='Coming soon', role='Research, then the build', chips=['Product research', 'Transit data', 'Calendar files'],
-      links=[('Open the app', URL['trains'], None), ('View code', CODE + 'Trains-by-MP', None)],
+      links=[('See its page', URL['trains'], None), ('View code', CODE + 'Trains-by-MP', None)],
       experience=[('Why I want to build it', SOON)]),
  dict(id='photos', name='Photos by MP', icon='assets/img/projects/photos.webp', color='#8b5cf6', state='soon', label='Coming soon',
       tagline='A proper home for my photography.',
@@ -75,7 +74,7 @@ PROJECTS = [
              'The plan: choose a small set of photos, design a layout that works well on phones, and keep every image sharp without making the page slow.'],
       highlights=[('Curated', 'A small, strong set of photos.'), ('Phone first', 'A layout made for small screens.'), ('Fast', 'Sharp images that still load quickly.')],
       timeline='Coming soon', role='Photography, design and the build', chips=['HTML', 'CSS', 'JavaScript', 'Photography'],
-      links=[('Open the app', URL['photos'], None), ('View code', CODE + 'Photos-by-MP', None)],
+      links=[('See its page', URL['photos'], None), ('View code', CODE + 'Photos-by-MP', None)],
       experience=[('Why I want to build it', SOON)]),
  dict(id='lineups', name='Lineups by MP', icon='assets/img/projects/lineups.webp', color='#f97316', state='soon', label='Coming soon',
       tagline='A research desk for daily fantasy.',
@@ -83,7 +82,7 @@ PROJECTS = [
              'It never connects to Yahoo. Salaries are typed or pasted by hand, and projections are labelled as estimates.'],
       highlights=[('Research', 'Players and salaries side by side.'), ('Build', 'Lineups that fit under the cap.'), ('Honest', 'Projections labelled as estimates.')],
       timeline='Coming soon', role='Planning it', chips=['TypeScript', 'SQL', 'Free sports data'],
-      links=[('Open the app', URL['lineups'], None), ('View code', CODE + 'Lineups-by-MP', None)],
+      links=[('See its page', URL['lineups'], None), ('View code', CODE + 'Lineups-by-MP', None)],
       experience=[('Why I want to build it', SOON)]),
  dict(id='closet', name='Closet by MP', icon='assets/img/projects/closet.webp', color='#ec4899', state='soon', label='Coming soon',
       tagline='A closet that builds itself.',
@@ -91,7 +90,7 @@ PROJECTS = [
              'Photos never leave the device, and faces are never stored.'],
       highlights=[('One photo a day', 'No typing in your clothes.'), ('Recognises clothes', 'Matches each piece to what it has seen.'), ('Stays on your phone', 'Photos never leave the device.')],
       timeline='Coming soon', role='Planning it', chips=['TypeScript', 'On-device models', 'IndexedDB'],
-      links=[('Open the app', URL['closet'], None), ('View code', CODE + 'Closet-by-MP', None)],
+      links=[('See its page', URL['closet'], None), ('View code', CODE + 'Closet-by-MP', None)],
       experience=[('Why I want to build it', SOON)]),
 ]
 
@@ -147,7 +146,7 @@ for i, p in enumerate(PROJECTS):
             'url': f'https://marcantoniopovolo.com/projects/{p["id"]}', 'image': f'https://marcantoniopovolo.com/assets/img/og/{p["id"]}.jpg',
             'creator': {'@id': 'https://marcantoniopovolo.com/#me'}, 'keywords': ', '.join(p['chips'])}
     if is_app:
-        work.update({'applicationCategory': 'WebApplication', 'operatingSystem': 'Any (web browser)', 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'CAD'}})
+        work.update({'applicationCategory': 'FinanceApplication' if p['id'] == 'markets' else 'WebApplication', 'operatingSystem': 'macOS, Windows' if p['id'] == 'markets' else 'Any (web browser)', 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'CAD'}})
     crumbs = {'@type': 'BreadcrumbList', 'itemListElement': [
         {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://marcantoniopovolo.com/'},
         {'@type': 'ListItem', 'position': 2, 'name': 'Projects', 'item': 'https://marcantoniopovolo.com/projects'},
