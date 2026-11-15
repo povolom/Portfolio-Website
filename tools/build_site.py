@@ -10,7 +10,7 @@ URL = {k: f'https://{k}.marcantoniopovolo.com/' for k in ('markets', 'trains', '
 CODE = 'https://github.com/povolom/'
 EMAIL = 'contact@marcantoniopovolo.com'
 EMAIL_BR = 'contact<wbr>@marcantoniopovolo.com'   # lets a narrow screen break the address at the @, never mid-word
-NAV = [('index.html', 'Home'), ('projects.html', 'Projects'), ('apps.html', 'Apps'), ('about.html', 'About'), ('resume.html', 'Résumé'), ('contact.html', 'Contact')]
+NAV = [('index.html', 'Home'), ('projects.html', 'Projects'), ('apps.html', 'Apps'), ('apis.html', 'APIs'), ('about.html', 'About'), ('resume.html', 'Résumé'), ('contact.html', 'Contact')]
 MENU = '<span class="burger" aria-hidden="true"><span></span><span></span></span>'
 PAGES = []   # every published address, for sitemap.xml
 PERSON = {'@type': 'Person', '@id': 'https://marcantoniopovolo.com/#me', 'name': 'Marcantonio Povolo', 'url': 'https://marcantoniopovolo.com/',
@@ -21,7 +21,7 @@ EXT = ' target="_blank" rel="noopener noreferrer"'
 
 FOOTER = f'''<footer class="footer"><div class="wrap foot-top">
 <div class="foot-brand"><span class="signature" role="img" aria-label="Marcantonio Povolo"></span><strong>Think Bigger.</strong><p>Computer Engineering at Toronto Metropolitan University. Based in GTA.</p></div>
-<div class="foot-col"><h2>Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="apps.html">Apps</a></li><li><a href="about.html">About</a></li></ul></div>
+<div class="foot-col"><h2>Explore</h2><ul><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="apps.html">Apps</a></li><li><a href="apis.html">APIs</a></li><li><a href="about.html">About</a></li></ul></div>
 <div class="foot-col"><h2>Résumé</h2><ul><li><a href="resume.html">View résumé</a></li><li><a href="assets/Marcantonio-Povolo-Resume.pdf" download>Download PDF</a></li></ul></div>
 <div class="foot-col"><h2>Connect</h2><ul><li><a href="mailto:{EMAIL}">Email</a></li><li><a href="https://www.linkedin.com/in/marcantoniopovolo/">LinkedIn</a></li><li><a href="https://github.com/povolom">GitHub</a></li></ul></div>
 </div><div class="wrap foot-bottom"><span>© 2026 Marcantonio Povolo</span></div></footer>'''
@@ -133,6 +133,44 @@ apps = ''.join(f'<section class="app-hero" id="app-{s}" style="--glow:{c}"><div 
 page('apps.html', 'Apps', 'Five apps by Marcantonio Povolo, each at its own web address: Markets, Trains, Photos, Lineups and Closet by MP. All coming soon, and open source.',
      hero('Small apps.<br>Built to be used.', 'Each one gets its own web address and a download for your phone or computer. None are open yet.', f'<ul class="app-strip">{strip}</ul>')
      + apps + contact_band('Want to try one early?', 'Tell me which app and what you’d use it for.'))
+
+
+# ---------- APIs ----------
+MAPI = URL['markets'] + 'api/v1'
+ENDPOINTS = [('GET', '/assets/search?q=shopify', 'Find stocks, ETFs, crypto and currencies by name, ticker or nickname'),
+             ('GET', '/assets/{id}/quote', 'Latest price and today’s change'),
+             ('GET', '/quotes?ids=xtse.ry,xnas.aapl', 'Up to 50 quotes in one call'),
+             ('GET', '/assets/{id}/history?range=1Y', 'Daily prices, raw and adjusted'),
+             ('GET', '/assets/{id}/dip?windowDays=30', 'How far an asset is below its recent high'),
+             ('GET', '/markets/overview', 'Benchmarks and the day’s biggest moves'),
+             ('GET', '/fx?from=USD&to=CAD', 'Exchange rates (European Central Bank)'),
+             ('GET', '/stats', 'Downloads and API calls, as shown on this page')]
+eps = ''.join(f'<li><span class="api-verb">{v}</span><code>{escape(path)}</code><span class="api-what">{d}</span></li>' for v, path, d in ENDPOINTS)
+OTHER_APIS = [('trains', 'Trains', 'GO train trips you pick, as calendar entries.'), ('photos', 'Photos', 'My photography, with fast image sizes for any screen.'),
+              ('lineups', 'Lineups', 'Daily fantasy research data.'), ('closet', 'Closet', 'Outfits and items from a closet that builds itself.')]
+others = ''.join(f'<a class="tile t-half api-other" href="{URL[a]}api/status"><p class="state soon">Coming soon</p><h3>{n} API</h3><p>{d}</p><code class="api-base">{a}.marcantoniopovolo.com/api/</code><span class="more">Check its status</span></a>' for a, n, d in OTHER_APIS)
+page('apis.html', 'APIs', 'Open APIs by Marcantonio Povolo. Every app runs on its own documented API. The Markets API gives keyless stock, ETF, crypto and currency data with an OpenAPI reference.',
+     hero('Open APIs.<br>Build on them.', 'Every app I make runs on its own API, the same one anyone can call. Public data needs no key, and everything is documented and open source.', kicker='For developers')
+     + f'''<section class="section tight"><div class="wrap"><div class="bento" data-stagger>
+ <article class="tile t-full api-hero" data-reveal>
+  <div class="api-head"><img src="assets/icons/apps/markets.png" alt="" width="64" height="64"><div><p class="state soon">Coming soon</p><h3>Markets API</h3></div></div>
+  <p>The API behind Markets by MP: search 12,000+ US and Canadian stocks and ETFs, crypto and currencies, then get quotes, daily history, statistics, dividends, dips and market overviews. The Markets website and the desktop app use exactly these routes.</p>
+  <div class="api-stats" data-stats="{MAPI}/stats" aria-live="polite">
+   <div><b data-k="downloads">…</b><span>app downloads</span></div>
+   <div><b data-k="calls">…</b><span>API calls served</span></div>
+   <div><b data-k="month">…</b><span>in the last 30 days</span></div>
+  </div>
+  <p class="api-note" data-stats-note>Live numbers appear here once the API is published.</p>
+  <pre class="api-code"><code>curl {MAPI}/assets/xtse.ry/quote</code></pre>
+  <ul class="api-list">{eps}</ul>
+  <div class="ctas" style="justify-content:flex-start;margin-top:22px"><a class="pill" href="{MAPI}/docs">Read the API reference</a><a class="more" href="{MAPI}/openapi.json">OpenAPI spec</a><a class="more" href="{CODE}Markets-by-MP">Source code</a></div>
+ </article>
+ <article class="tile t-third" data-reveal><p class="label">No key needed</p><h3>Free to call.</h3><p>Public market data is keyless: 120 requests a minute per address, more when signed in. Errors and limits are plain JSON.</p></article>
+ <article class="tile t-third" data-reveal><p class="label">Honest data</p><h3>Every value says where it came from.</h3><p>Each response names its source and time. Hosted stock prices are labelled demo data until a licensed feed is connected; exchange rates are real.</p></article>
+ <article class="tile t-third" data-reveal><p class="label">Run your own</p><h3>Or take it with you.</h3><p>The Markets desktop app for Mac and Windows runs the whole API on your own computer, with real prices and no key.</p><span class="spacer"></span><a class="more" href="{URL['markets']}">Get the app</a></article>
+</div></div></section>
+<section class="section tight"><div class="wrap"><div class="section-intro" data-reveal><h2 class="headline">Every app,<br>its own API.</h2><p class="sub">Each app lives at its own address, with its API under /api/.</p></div><div class="bento" data-stagger>{others}</div></div></section>
+''' + contact_band('Building something with these?', 'Tell me what you made, or what endpoint you wish existed.'))
 
 
 # ---------- About ----------

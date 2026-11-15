@@ -102,3 +102,19 @@ document.querySelectorAll('.segments').forEach(seg => {
   requestAnimationFrame(() => { glider.style.transition = ''; });
   addEventListener('resize', () => move(tabs.find(t => t.getAttribute('aria-selected') === 'true')));
 });
+
+// APIs page: live download and API call counts from the Markets API, if it's reachable.
+document.querySelectorAll('[data-stats]').forEach(async box => {
+  const note = document.querySelector('[data-stats-note]');
+  const fmt = n => n == null ? '…' : new Intl.NumberFormat('en-CA', { notation: n >= 10000 ? 'compact' : 'standard', maximumFractionDigits: 1 }).format(n);
+  try {
+    const res = await fetch(box.getAttribute('data-stats'), { headers: { accept: 'application/json' } });
+    if (!res.ok) throw new Error(String(res.status));
+    const { data } = await res.json();
+    const set = (k, v) => { const el = box.querySelector(`[data-k="${k}"]`); if (el) el.textContent = fmt(v); };
+    set('downloads', data.downloads ? data.downloads.total : null);
+    set('calls', data.apiCalls ? data.apiCalls.total : null);
+    set('month', data.apiCalls ? data.apiCalls.last30Days : null);
+    if (note) note.textContent = `Updated ${new Date(data.asOf).toLocaleString('en-CA', { dateStyle: 'medium', timeStyle: 'short' })}. Downloads count the Mac and Windows installers on GitHub.`;
+  } catch { /* the API isn't published yet: keep the dashes and the note */ }
+});
